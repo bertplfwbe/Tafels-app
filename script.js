@@ -5,6 +5,8 @@ let currentAnswer = 0;
 let canAnswer = true;
 
 // DOM elements
+const modeSelection = document.getElementById('modeSelection');
+const gameScreen = document.getElementById('gameScreen');
 const number1 = document.getElementById('number1');
 const number2 = document.getElementById('number2');
 const operator = document.getElementById('operator');
@@ -13,11 +15,26 @@ const feedback = document.getElementById('feedback');
 const scoreElement = document.getElementById('score');
 const multiplyBtn = document.getElementById('multiplyBtn');
 const divideBtn = document.getElementById('divideBtn');
+const multiplicationModeBtn = document.getElementById('multiplicationMode');
+const divisionModeBtn = document.getElementById('divisionMode');
 
 // Event listeners
+multiplicationModeBtn.addEventListener('click', () => startGame(true));
+divisionModeBtn.addEventListener('click', () => startGame(false));
 multiplyBtn.addEventListener('click', () => switchMode(true));
 divideBtn.addEventListener('click', () => switchMode(false));
 answerInput.addEventListener('input', checkAnswer);
+
+// Start the game with selected mode
+function startGame(multiply) {
+    isMultiplication = multiply;
+    modeSelection.style.display = 'none';
+    gameScreen.style.display = 'block';
+    multiplyBtn.classList.toggle('active', multiply);
+    divideBtn.classList.toggle('active', !multiply);
+    operator.textContent = multiply ? '×' : '÷';
+    generateNewProblem();
+}
 
 // Switch between multiplication and division
 function switchMode(multiply) {
@@ -71,7 +88,10 @@ function checkAnswer() {
             score = 0;
             scoreElement.textContent = score;
             canAnswer = false;
-            setTimeout(generateNewProblem, 3000);
+            setTimeout(() => {
+                gameScreen.style.display = 'none';
+                modeSelection.style.display = 'block';
+            }, 3000);
         } else {
             feedback.textContent = '✨ Goed gedaan! ✨';
             feedback.className = 'feedback correct';

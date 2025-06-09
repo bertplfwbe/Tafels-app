@@ -9,20 +9,31 @@
 <body>
     <div class="container">
         <h1>Tafels Oefenen</h1>
-        <div class="game-mode">
-            <button id="multiplyBtn" class="active">Maaltafels</button>
-            <button id="divideBtn">Deeltafels</button>
+        
+        <!-- Mode Selection Screen -->
+        <div id="modeSelection" class="mode-selection">
+            <h2>Kies een modus:</h2>
+            <button id="multiplicationMode" class="mode-btn">Maaltafels</button>
+            <button id="divisionMode" class="mode-btn">Deeltafels</button>
         </div>
-        <div class="game-container">
-            <div class="problem">
-                <span id="number1">6</span>
-                <span id="operator">×</span>
-                <span id="number2">7</span>
-                <span>=</span>
-                <input type="number" id="answer" autofocus>
+
+        <!-- Game Screen (initially hidden) -->
+        <div id="gameScreen" class="game-screen" style="display: none;">
+            <div class="game-mode">
+                <button id="multiplyBtn" class="active">Maaltafels</button>
+                <button id="divideBtn">Deeltafels</button>
             </div>
-            <div class="feedback" id="feedback"></div>
-            <div class="score">Score: <span id="score">0</span></div>
+            <div class="game-container">
+                <div class="problem">
+                    <span id="number1">6</span>
+                    <span id="operator">×</span>
+                    <span id="number2">7</span>
+                    <span>=</span>
+                    <input type="number" id="answer" autofocus>
+                </div>
+                <div class="feedback" id="feedback"></div>
+                <div class="score">Score: <span id="score">0</span></div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

@@ -98,4 +98,44 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+.mode-selection {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.mode-selection h2 {
+    color: #4a4a4a;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.mode-btn {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 1rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+    background-color: #7d6eff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background-color: #6ee6ff;
+    transform: scale(1.05);
+}
+
+.game-screen {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 } 
