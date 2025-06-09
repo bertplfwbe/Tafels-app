@@ -1,11 +1,13 @@
 // Game state
 let isMultiplication = true;
+let selectedTable = 0;
 let score = 0;
 let currentAnswer = 0;
 let canAnswer = true;
 
 // DOM elements
-const modeSelection = document.getElementById('modeSelection');
+const startScreen = document.getElementById('startScreen');
+const tableSelectionScreen = document.getElementById('tableSelectionScreen');
 const gameScreen = document.getElementById('gameScreen');
 const number1 = document.getElementById('number1');
 const number2 = document.getElementById('number2');
@@ -17,32 +19,56 @@ const multiplyBtn = document.getElementById('multiplyBtn');
 const divideBtn = document.getElementById('divideBtn');
 const multiplicationModeBtn = document.getElementById('multiplicationMode');
 const divisionModeBtn = document.getElementById('divisionMode');
-const backButton = document.getElementById('backButton');
+const backToStart = document.getElementById('backToStart');
+const backToTables = document.getElementById('backToTables');
+const tableButtons = document.querySelectorAll('.table-btn');
 
 // Event listeners
-multiplicationModeBtn.addEventListener('click', () => startGame(true));
-divisionModeBtn.addEventListener('click', () => startGame(false));
+multiplicationModeBtn.addEventListener('click', () => showTableSelection(true));
+divisionModeBtn.addEventListener('click', () => showTableSelection(true));
+backToStart.addEventListener('click', returnToStart);
+backToTables.addEventListener('click', returnToTables);
 multiplyBtn.addEventListener('click', () => switchMode(true));
 divideBtn.addEventListener('click', () => switchMode(false));
 answerInput.addEventListener('input', checkAnswer);
-backButton.addEventListener('click', returnToModeSelection);
 
-// Return to mode selection screen
-function returnToModeSelection() {
+tableButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        selectedTable = parseInt(button.dataset.table);
+        startGame();
+    });
+});
+
+// Show table selection screen
+function showTableSelection(multiply) {
+    isMultiplication = multiply;
+    startScreen.style.display = 'none';
+    tableSelectionScreen.style.display = 'block';
+}
+
+// Return to start screen
+function returnToStart() {
+    score = 0;
+    scoreElement.textContent = score;
+    tableSelectionScreen.style.display = 'none';
+    startScreen.style.display = 'block';
+}
+
+// Return to table selection
+function returnToTables() {
     score = 0;
     scoreElement.textContent = score;
     gameScreen.style.display = 'none';
-    modeSelection.style.display = 'block';
+    tableSelectionScreen.style.display = 'block';
 }
 
-// Start the game with selected mode
-function startGame(multiply) {
-    isMultiplication = multiply;
-    modeSelection.style.display = 'none';
+// Start the game with selected table
+function startGame() {
+    tableSelectionScreen.style.display = 'none';
     gameScreen.style.display = 'block';
-    multiplyBtn.classList.toggle('active', multiply);
-    divideBtn.classList.toggle('active', !multiply);
-    operator.textContent = multiply ? '×' : '÷';
+    multiplyBtn.classList.toggle('active', isMultiplication);
+    divideBtn.classList.toggle('active', !isMultiplication);
+    operator.textContent = isMultiplication ? '×' : '÷';
     generateNewProblem();
 }
 
@@ -63,13 +89,13 @@ function generateNewProblem() {
     canAnswer = true;
 
     if (isMultiplication) {
-        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num1 = selectedTable;
         const num2 = Math.floor(Math.random() * 10) + 1;
         number1.textContent = num1;
         number2.textContent = num2;
         currentAnswer = num1 * num2;
     } else {
-        const num2 = Math.floor(Math.random() * 10) + 1;
+        const num2 = selectedTable;
         const answer = Math.floor(Math.random() * 10) + 1;
         const num1 = num2 * answer;
         number1.textContent = num1;
@@ -100,7 +126,7 @@ function checkAnswer() {
             canAnswer = false;
             setTimeout(() => {
                 gameScreen.style.display = 'none';
-                modeSelection.style.display = 'block';
+                tableSelectionScreen.style.display = 'block';
             }, 3000);
         } else {
             feedback.textContent = '✨ Goed gedaan! ✨';
