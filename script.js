@@ -17,6 +17,7 @@ const multiplyBtn = document.getElementById('multiplyBtn');
 const divideBtn = document.getElementById('divideBtn');
 const multiplicationModeBtn = document.getElementById('multiplicationMode');
 const divisionModeBtn = document.getElementById('divisionMode');
+const backButton = document.getElementById('backButton');
 
 // Event listeners
 multiplicationModeBtn.addEventListener('click', () => startGame(true));
@@ -24,6 +25,15 @@ divisionModeBtn.addEventListener('click', () => startGame(false));
 multiplyBtn.addEventListener('click', () => switchMode(true));
 divideBtn.addEventListener('click', () => switchMode(false));
 answerInput.addEventListener('input', checkAnswer);
+backButton.addEventListener('click', returnToModeSelection);
+
+// Return to mode selection screen
+function returnToModeSelection() {
+    score = 0;
+    scoreElement.textContent = score;
+    gameScreen.style.display = 'none';
+    modeSelection.style.display = 'block';
+}
 
 // Start the game with selected mode
 function startGame(multiply) {
