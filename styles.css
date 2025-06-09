@@ -132,6 +132,21 @@ input[type="number"] {
     transform: scale(1.05);
 }
 
+.mode-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
 .game-screen {
     animation: fadeIn 0.5s ease-in;
 }
