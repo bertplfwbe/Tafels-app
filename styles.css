@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6ee6ff, #7d6eff);
+}
+
+.container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #4a4a4a;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.game-mode {
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #e0e0e0;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+button.active {
+    background-color: #7d6eff;
+    color: white;
+}
+
+.problem {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    color: #4a4a4a;
+}
+
+input[type="number"] {
+    width: 120px;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border: 3px solid #7d6eff;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 0.5rem;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #6ee6ff;
+}
+
+.feedback {
+    height: 2rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.feedback.correct {
+    color: #4CAF50;
+}
+
+.feedback.incorrect {
+    color: #f44336;
+}
+
+.score {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-top: 1rem;
+}
+
+/* Verberg de pijltjes van het number input veld */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+} 
